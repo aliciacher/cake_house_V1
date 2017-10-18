@@ -47,7 +47,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h1 class="text-left">產品管理</h1>
+            <h1 class="text-left">會員管理</h1>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
                 <a href="#">主控台</a>
               </li>
               <li>
-                <a href="#" class="active">產品管理</a>
+                <a href="#" class="active">會員管理</a>
               </li>
             </ul>
           </div>
@@ -76,20 +76,23 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>產品圖片</th>
-                  <th>產品名稱</th>
-                  <th>價格</th>
+                  <th>會員姓名</th>
+                  <th>會員帳號</th>
+                  <th>行動電話</th>
+                  <th>E-Mail</th>
                   <th>編輯</th>
                   <th>刪除</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th></th>
-                  <td>戚風蛋糕</td>
-                  <td>NT$350</td>
-                  <td><a href="#" class="btn btn-default">編輯</a></td>
-                  <td><a href="#" class="btn btn-default">刪除</a></td>
+                  <td><img src="" alt=""></td>
+                  <td>Andy Liu</td>
+                  <td>andy1225</td>
+                  <td>0988445123</td>
+                  <td>andy@gmail.com</td>
+                  <td>編輯</td>
+                  <td>刪除</td>
                 </tr>
               </tbody>
             </table>
@@ -132,7 +135,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <h1>聖保羅廚房</h1>
+            <h1>Sweet House</h1>
             <p contenteditable="true">版權所有 © 2016 &nbsp; St Paul Kitchen All Right Reserved.</p>
           </div>
         </div>

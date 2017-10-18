@@ -1,7 +1,16 @@
 <?php
+//限制存取頁面
+require_once("../template/login_check.php");
 require_once("../../connection/database.php");
-$sth = $db->query("SELECT * FROM news ORDER BY published_date DESC");
+$limit = 10;
+//判斷目前第幾頁，若沒有page參數就預設為1
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+//計算要從第幾筆開始
+$start_from = ($page-1) * $limit;
+$sth = $db->query("SELECT * FROM news ORDER BY published_date DESC LIMIT ".$start_from.",". $limit);
 $all_news = $sth->fetchAll(PDO::FETCH_ASSOC);
+$totalRows = count($all_news);
+
 ?>
 <html><head>
     <meta charset="utf-8">
@@ -11,43 +20,7 @@ $all_news = $sth->fetchAll(PDO::FETCH_ASSOC);
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="..\css\admin.css" rel="stylesheet" type="text/css">
   </head><body>
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#" contenteditable="true">Sweet House</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a href="#">頁面管理</a>
-              </li>
-              <li class="active">
-                <a href="#">最新消息管理</a>
-              </li>
-              <li>
-                <a href="#">產品管理</a>
-              </li>
-              <li>
-                <a href="#">訂單管理</a>
-              </li>
-              <li>
-                <a href="#">會員管理</a>
-              </li>
-              <li>
-                <a href="#">登出</a>
-              </li>
-            </ul>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <?php include_once("../template/nav.php"); ?>
     <div class="section">
       <div class="container">
         <div class="row">
@@ -93,8 +66,8 @@ $all_news = $sth->fetchAll(PDO::FETCH_ASSOC);
                 <tr>
                   <td><?php echo $row['published_date']; ?></td>
                   <td><?php echo $row['title']; ?></td>
-                  <td><a href="#">編輯</a></td>
-                  <td><a href="#">刪除</a></td>
+                  <td><a href="edit.php?newsID=<?php echo $row['newsID'];?>">編輯</a></td>
+                  <td><a href="delete.php?newsID=<?php echo $row['newsID'];?>" onclick="if(!confirm('是否刪除此筆資料？')){return false;};">刪除</a></td>
                 </tr>
                 <?php } ?>
               </tbody>
@@ -107,29 +80,33 @@ $all_news = $sth->fetchAll(PDO::FETCH_ASSOC);
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
+            <?php  if($totalRows > 0){
+                $sth = $db->query("SELECT * FROM news ORDER BY published_date DESC ");
+                $data_count = count($sth ->fetchAll(PDO::FETCH_ASSOC));
+                $total_pages = ceil($data_count / $limit);
+               ?>
             <ul class="pagination">
               <li>
-                <a href="#">上一頁</a>
+                <?php  if($page > 1){ ?>
+                  <a href="list.php?page=<?php echo $page-1;?>">上一頁</a>
+                <?php }else{ ?>
+                  <a href="#">上一頁</a>
+                <?php } ?>
               </li>
+              <?php for ($i=1; $i <= $total_pages; $i++) { ?>
               <li>
-                <a href="#">1</a>
+                <a href="list.php?page=<?php echo $i;?>"><?php echo $i;?></a>
               </li>
+              <?php } ?>
               <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li>
-                <a href="#">下一頁</a>
+                <?php  if($page < $total_pages){ ?>
+                  <a href="list.php?page=<?php echo $page+1;?>">下一頁</a>
+                <?php }else{ ?>
+                  <a href="#">下一頁</a>
+                <?php } ?>
               </li>
             </ul>
+          <?php } //End totalRows if?>
           </div>
         </div>
       </div>

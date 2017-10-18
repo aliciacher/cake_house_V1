@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/validator.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="..\css\admin.css" rel="stylesheet" type="text/css">
   </head><body>
@@ -45,7 +46,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h1 class="text-left">近期活動管理</h1>
+            <h1 class="text-left">會員管理</h1>
           </div>
         </div>
       </div>
@@ -59,9 +60,9 @@
                 <a href="#">主控台</a>
               </li>
               <li>
-                <a href="#">近期活動管理</a>
+                <a href="#">會員管理</a>
               </li>
-              <li class="active">新增一筆</li>
+              <li class="active">編輯</li>
             </ul>
           </div>
         </div>
@@ -72,22 +73,60 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <form class="form-horizontal" role="form">
-              
+            <form class="form-horizontal" role="form" data-toggle="validator">
               <div class="form-group">
                 <div class="col-sm-2">
-                  <label for="Title" class="control-label">標題</label>
+                  <label for="Title" class="control-label">會員照片</label>
                 </div>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="Title">
+                  <input type="file" class="form-control" id="Title">
+                  <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-2">
-                  <label for="inputEmail3" class="control-label">內容</label>
+                  <label for="Title" class="control-label">會員姓名</label>
                 </div>
                 <div class="col-sm-10">
-                  <textarea class="form-control" id="inputEmail3"></textarea>
+                  <input type="text" class="form-control" id="Title">
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="Title" class="control-label">帳號</label>
+                </div>
+                <div class="col-sm-10">
+                  andy1225
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="Title" class="control-label">電話</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="Title">
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="Title" class="control-label">E-mail</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="Title">
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="Title" class="control-label">地址</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="Title">
+                  <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="form-group">
@@ -104,7 +143,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <h1>聖保羅廚房</h1>
+            <h1>Sweet House</h1>
             <p contenteditable="true">版權所有 © 2016 &nbsp; St Paul Kitchen All Right Reserved.</p>
           </div>
         </div>
