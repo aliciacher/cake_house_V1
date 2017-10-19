@@ -1,4 +1,3 @@
-
 <!doctype html>
 <!-- Website ../template by freewebsite../templates.com -->
 <html>
@@ -10,7 +9,7 @@
 </head>
 <body>
 	<div id="page">
-		<?php require_once("../template/header.php"); ?>
+		<?php require_once("../template/header2.php"); ?>
 		<div id="body" class="contact">
 			<div class="header">
 				<div>
@@ -31,7 +30,7 @@
 								<label for="Account" class="control-label">帳號</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="Account" name="Account"  style="margin-bottom:10px;" data-error="請輸入E-mail做為帳號" required>
+								<input type="email" class="form-control" id="account" name="account"  style="margin-bottom:10px;" data-error="請輸入E-mail做為帳號" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
@@ -40,7 +39,7 @@
 								<label for="Password" class="control-label">密碼</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="Password" name="Password" data-minlength="6" required data-error="請輸入至少6個英文數字做為密碼">
+								<input type="password" class="form-control" id="password" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$" data-minlength="6" data-error="請輸入至少6個字元密碼(至少含一個英文大寫，一個英文小寫及一個數字)" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
@@ -49,7 +48,7 @@
 								<label for="ConfirmPas" class="control-label">確認密碼</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="ConfirmPas" name="ConfirmPas" data-match="#Password" data-match-error="密碼不符，請重新輸入">
+								<input type="password" class="form-control" id="ConfirmPas" name="ConfirmPas" data-match="#password" data-match-error="密碼不符，請重新輸入">
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
@@ -58,7 +57,7 @@
 								<label for="Phone" class="control-label">聯絡電話</label>
 							</div>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="Phone" name="Phone" data-error="請輸入聯絡電話" required>
+								<input type="text" class="form-control" id="phone" name="phone" data-error="請輸入聯絡電話" required>
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>
@@ -70,7 +69,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
-								<input type="hidden" class="form-control" id="CreatedDate" name="CreatedDate" value="<?php echo date("Y-m-d H:i:s"); ?>">
+								<input type="hidden" class="form-control" id="createdDate" name="createdDate" value="<?php echo date("Y-m-d H:i:s"); ?>">
 								<button type="submit" class="btn btn-default" style="width:200px;">確認送出</button>
 							</div>
 						</div>
