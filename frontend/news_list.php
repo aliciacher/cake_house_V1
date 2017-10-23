@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../connection/database.php");
 $sth = $db->query("SELECT * FROM news ORDER BY published_date DESC");
 $all_news = $sth->fetchAll(PDO::FETCH_ASSOC);

@@ -1,4 +1,5 @@
 <?php
+sesstion_start();
 require_once("../../connection/database.php");
 $sql= "INSERT INTO member (account, password, phone, createdDate) VALUES (:account, :password, :phone,:createdDate)";
 $sth = $db ->prepare($sql);

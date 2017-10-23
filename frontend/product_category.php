@@ -1,8 +1,9 @@
 <?php
+session_start();
 require_once("../connection/database.php");
 $sth = $db->query("SELECT * FROM product_category");
 $categories = $sth->fetchAll(PDO::FETCH_ASSOC);
-$sth2 = $db->query("SELECT * FROM product WHERE product_categoryID =".$GET['product_categoryID']." ORDER BY createdDate DESC");
+$sth2 = $db->query("SELECT * FROM product WHERE product_categoryID =".$_GET['product_categoryID']." ORDER BY createdDate DESC");
 $products = $sth2->fetchAll(PDO::FETCH_ASSOC);
  ?>
 <!doctype html>
