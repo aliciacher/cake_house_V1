@@ -1,6 +1,9 @@
-<?php session_start();
+<?php
+session_start();
 if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
 	$id= $_POST['CartID'];
+	if($_POST['quantity'] <= 0) $_POST['quantity']=1;
+	$_SESSION['Cart'][$id]['quantity'] = $_POST['quantity'];
 }
 ?>
 <!doctype html>
@@ -46,31 +49,51 @@ if(isset($_POST['MM_update']) && $_POST['MM_update'] == "QuantityEdit"){
             		</tr>
             	</thead>
               <tbody>
-
+								<?php if(isset($_SESSION['Cart']) && $_SESSION['Cart'] != null){
+											$totalPrice = 0;
+									?>
+	                <?php for($i = 0 ; $i < count($_SESSION['Cart']); $i++){  //有商品在購物車時顯示?>
 	                <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
 										<td data-title="商品圖片">
-												<a href=""><img src="../uploads/product/cheese.jpg" alt="" width="200" height="150"></a>
+												<a href=""><img src="../../uploads/products/<?php echo $_SESSION['Cart'][$i]['picture']; ?>" alt="" width="200" height="150"></a>
 										</td>
 										<td class="cart_description" data-title="商品名稱">
-												<h4><a href="">起司蛋糕</a></h4>
+												<h4><a href=""><?php echo $_SESSION['Cart'][$i]['name']; ?></a></h4>
 										</td>
-	                  <td data-title="單價">$NT 120</td>
-	                  <td class="quantity" data-title="數量">1</td>
-										<td data-title="小計">$NT 120</td>
+	                  <td data-title="單價">$NT <?php echo $_SESSION['Cart'][$i]['price']; ?></td>
+	                  <td class="quantity" data-title="數量"><?php echo $_SESSION['Cart'][$i]['quantity']; ?></td>
+										<td data-title="小計">$NT <?php $subtotal = $_SESSION['Cart'][$i]['price'] * $_SESSION['Cart'][$i]['quantity']; echo $subtotal; ?></td>
 	                  <td data-title="更新">
-											<a href="#" class="btn btn-default update" style=""><i class="fa fa-upload"></i></a>
+											<a href="my_cart_edit.php?CartID=<?php echo $i; ?>" class="btn btn-default update" style=""><i class="fa fa-upload"></i></a>
 										</td>
 										<td data-title="刪除">
-											<a class="btn btn-default" href="#" ><i class="fa fa-times"></i></a>
+											<a class="btn btn-default" href="cart_delete.php?CartID=<?php echo $i; ?>" onclick="if(!confirm('是否移除此商？')){return false;};" ><i class="fa fa-times"></i></a>
 										</td>
 	                </tr>
+								<?php
+									$totalPrice += $subtotal;
+							} //for結尾 ?>
+								<tr>
+									<td colspan="6" style="text-align: right;font-weight:bold;">運費</td>
+									<td style="text-align: left;font-weight:bold;">$NT <?php if($totalPrice > 1000) echo "0"; else echo "150"; ?></td>
+								</tr>
+								<tr>
+									<td colspan="6" style="text-align: right;font-weight:bold;">總金額</td>
+									<td style="text-align: left;font-weight:bold;">$NT <?php echo $totalPrice; ?></td>
+								</tr>
 
 									<tr>
-										<td colspan="7">
-											目前購物車無商品，請<a href="#">前往賣場</a>選購商品。
+										<td colspan="7" >
+												<a href="order_confirm.php" class="edit-button cart">我要結帳</a>
 										</td>
 									</tr>
-
+							<?php }else{ //未加入商品至購物車顯示?>
+									<tr>
+										<td colspan="7">
+											目前購物車無商品，請<a href="../product_no_category.php">前往賣場</a>選購商品。
+										</td>
+									</tr>
+								<?php } ?>
               </tbody>
             </table>
 				</div>
