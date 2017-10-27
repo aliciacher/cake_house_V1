@@ -37,6 +37,20 @@ $products = $sth2->fetchAll(PDO::FETCH_ASSOC);
 					<?php } ?>
 
 				</ul>
+        <div class="row">
+            <div class="col-md-4">
+            </div><div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <form action="" class="search-form">
+                    <div class="form-group has-feedback">
+                		<label for="search" class="sr-only">搜尋產品</label>
+                		<input type="text" class="form-control" name="search" id="search" placeholder="搜尋產品">
+                  		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+                	</div>
+                </form>
+            </div>
+        </div>
 				<ul id="Products">
 
 					<?php foreach($products as $product){ ?>

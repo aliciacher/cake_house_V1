@@ -46,6 +46,14 @@ $category = $sth2->fetch(PDO::FETCH_ASSOC);
   ?>
 </head>
 <body>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.10';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 	<div id="page">
 		<?php require_once("template/header.php"); ?>
 		<div id="body">
@@ -108,6 +116,7 @@ $category = $sth2->fetch(PDO::FETCH_ASSOC);
 					<div class="clearboth"></div>
 					<hr>
 					<p><?php echo $product['description']; ?></p>
+          <p><div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="3"></div></p>
 				</div>
 			</div>
 		</div>
