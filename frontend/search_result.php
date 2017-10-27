@@ -3,7 +3,7 @@ session_start();
 require_once("../connection/database.php");
 $sth = $db->query("SELECT * FROM product_category");
 $categories = $sth->fetchAll(PDO::FETCH_ASSOC);
-$sth2 = $db->query("SELECT * FROM product ORDER BY createdDate DESC");
+$sth2 = $db->query("SELECT * FROM product WHERE name LIKE '%".$_GET['search']."%' ORDER BY createdDate DESC");
 $products = $sth2->fetchAll(PDO::FETCH_ASSOC);
  ?>
 <!doctype html>
@@ -29,7 +29,7 @@ $products = $sth2->fetchAll(PDO::FETCH_ASSOC);
 
 			<div class="header">
 				<div>
-					<h1>Products</h1>
+					<h1>搜尋結果</h1>
 				</div>
 			</div>
 			<div class="wrapper">
@@ -49,7 +49,7 @@ $products = $sth2->fetchAll(PDO::FETCH_ASSOC);
             </div><div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <form action="search_result.php" class="search-form" method="get">
+                <form action="" class="search-form">
                     <div class="form-group has-feedback">
                     <label for="search" class="sr-only">搜尋產品</label>
                     <input type="text" class="form-control" name="search" id="search" placeholder="搜尋產品">
@@ -58,6 +58,7 @@ $products = $sth2->fetchAll(PDO::FETCH_ASSOC);
                 </form>
             </div>
         </div>
+        <h2>搜尋結果</h2>
 				<ul id="Products">
 					<?php foreach($products as $product){ ?>
 					<li>
